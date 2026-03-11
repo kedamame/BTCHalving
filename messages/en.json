@@ -1,0 +1,22 @@
+{
+  "title": "BTC Halving Countdown",
+  "nextHalving": "Next Halving in",
+  "days": "days",
+  "hours": "hrs",
+  "minutes": "min",
+  "seconds": "sec",
+  "currentPrice": "BTC Price",
+  "blockHeight": "Current Block Height",
+  "blocksRemaining": "Blocks Remaining",
+  "estimatedDate": "Estimated Date",
+  "pastHalvings": "Past Halvings Performance",
+  "epoch": "Epoch",
+  "date": "Date",
+  "priceAtHalving": "Price at Halving",
+  "gain1Year": "+1 Year Gain",
+  "tbd": "TBD",
+  "shareOnWarpcast": "Share on Warpcast",
+  "dataDelayed": "Data may be delayed",
+  "loading": "Loading...",
+  "shareText": "🪙 BTC Halving Countdown\n⏳ {days} days left!\n💰 Current BTC: ${price}\n\nPast gains after halving:\n• 2012: +8,069%\n• 2016: +289%\n• 2020: +551%\n\nCheck it out 👇"
+}

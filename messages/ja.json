@@ -1,0 +1,22 @@
+{
+  "title": "BTC 半減期カウントダウン",
+  "nextHalving": "次の半減期まで",
+  "days": "日",
+  "hours": "時間",
+  "minutes": "分",
+  "seconds": "秒",
+  "currentPrice": "BTC価格",
+  "blockHeight": "現在のブロック高",
+  "blocksRemaining": "残りブロック数",
+  "estimatedDate": "推定日時",
+  "pastHalvings": "過去の半減期パフォーマンス",
+  "epoch": "回",
+  "date": "日付",
+  "priceAtHalving": "半減期時の価格",
+  "gain1Year": "+1年後のリターン",
+  "tbd": "未定",
+  "shareOnWarpcast": "Warpcastでシェア",
+  "dataDelayed": "データが遅延している可能性があります",
+  "loading": "読み込み中...",
+  "shareText": "🪙 BTC半減期カウントダウン\n⏳ 残り{days}日！\n💰 現在のBTC: ${price}\n\n過去の半減期後の上昇率：\n• 2012年: +8,069%\n• 2016年: +289%\n• 2020年: +551%\n\n詳細はこちら👇"
+}
