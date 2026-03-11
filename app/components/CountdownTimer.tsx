@@ -23,14 +23,20 @@ export default function CountdownTimer({ blockHeight }: CountdownTimerProps) {
   useEffect(() => {
     if (blockHeight === null) return;
 
+    // Compute the estimated halving date once from the block height snapshot
+    const { estimatedDate, blocksRemaining } = calculateCountdown(blockHeight);
+    const targetMs = estimatedDate.getTime();
+
     const update = () => {
-      const result = calculateCountdown(blockHeight);
+      const remainingMs = Math.max(0, targetMs - Date.now());
+      const totalSeconds = Math.floor(remainingMs / 1000);
+
       setTimeLeft({
-        days: result.days,
-        hours: result.hours,
-        minutes: result.minutes,
-        seconds: result.seconds,
-        blocksRemaining: result.blocksRemaining,
+        days: Math.floor(totalSeconds / 86400),
+        hours: Math.floor((totalSeconds % 86400) / 3600),
+        minutes: Math.floor((totalSeconds % 3600) / 60),
+        seconds: totalSeconds % 60,
+        blocksRemaining,
       });
     };
 
