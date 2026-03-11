@@ -3,7 +3,23 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "../globals.css";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://halving-countdown.vercel.app";
+const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL || "https://btc-halving-two.vercel.app";
+
+const frameConfig = {
+  version: "next",
+  imageUrl: `${APP_URL}/api/og`,
+  button: {
+    title: "BTC Halving Countdown",
+    action: {
+      type: "launch_frame",
+      name: "BTC Halving Countdown",
+      url: APP_URL,
+      splashImageUrl: `${APP_URL}/splash.png`,
+      splashBackgroundColor: "#F7931A",
+    },
+  },
+};
 
 export const metadata: Metadata = {
   title: "BTC Halving Countdown",
@@ -14,10 +30,7 @@ export const metadata: Metadata = {
     images: [`${APP_URL}/api/og`],
   },
   other: {
-    "fc:frame": "vNext",
-    "fc:frame:image": `${APP_URL}/api/og`,
-    "fc:frame:button:1": "View Halving Countdown",
-    "fc:frame:post_url": `${APP_URL}/api/frame`,
+    "fc:frame": JSON.stringify(frameConfig),
   },
 };
 
@@ -34,10 +47,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
-        <meta property="fc:frame" content="vNext" />
-        <meta property="fc:frame:image" content={`${APP_URL}/api/og`} />
-        <meta property="fc:frame:button:1" content="View Halving Countdown" />
-        <meta property="fc:frame:post_url" content={`${APP_URL}/api/frame`} />
+        <meta name="fc:frame" content={JSON.stringify(frameConfig)} />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>

@@ -1,6 +1,14 @@
-import { redirect } from "next/navigation";
+"use client";
 
-// Redirect root to /en
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+// Client-side redirect so Farcaster crawler can read fc:frame meta from layout
 export default function RootPage() {
-  redirect("/en");
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/en");
+  }, [router]);
+
+  return null;
 }
