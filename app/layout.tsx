@@ -31,6 +31,7 @@ export default function RootLayout({
     <html>
       <head>
         <meta name="fc:miniapp" content={JSON.stringify(miniAppEmbed)} />
+        <meta name="base:app_id" content="69d0a8ac6bde4593a961d879" />
       </head>
       <body>{children}</body>
     </html>

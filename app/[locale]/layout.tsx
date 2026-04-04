@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   title: "BTC Halving Countdown",
   description:
     "Bitcoin halving countdown with historical performance data. A Farcaster MiniApp.",
+  other: {
+    "base:app_id": "69d0a8ac6bde4593a961d879",
+  },
   openGraph: {
     title: "BTC Halving Countdown",
     description: "Next BTC halving countdown with historical performance data",

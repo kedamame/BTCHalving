@@ -6,12 +6,7 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig = {
   async redirects() {
     return [
-      {
-        source: "/icon.png",
-        destination: "/api/icon",
-        permanent: false,
-      },
-      {
+{
         source: "/image.png",
         destination: "/api/og",
         permanent: false,
