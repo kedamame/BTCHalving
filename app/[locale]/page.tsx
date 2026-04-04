@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useFarcasterMiniApp } from "@/lib/farcaster";
 import CountdownTimer from "../components/CountdownTimer";
 import BlockStats from "../components/BlockStats";
 import HalvingBarChart from "../components/HalvingBarChart";
 import HalvingHistoryTable from "../components/HalvingHistoryTable";
 import ShareButton from "../components/ShareButton";
 import LanguageToggle from "../components/LanguageToggle";
-import sdk from "@farcaster/frame-sdk";
 
 interface MarketData {
   btcPrice: number | null;
@@ -18,18 +18,12 @@ interface MarketData {
 
 export default function HomePage() {
   const t = useTranslations();
+  const { user } = useFarcasterMiniApp();
   const [marketData, setMarketData] = useState<MarketData>({
     btcPrice: null,
     blockHeight: null,
     isDelayed: false,
   });
-
-  useEffect(() => {
-    // Initialize Farcaster MiniApp
-    sdk.actions.ready().catch(() => {
-      // Not in Farcaster context, ignore
-    });
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +55,21 @@ export default function HomePage() {
             <span>🪙</span>
             <span className="text-[#F7931A]">{t("title")}</span>
           </h1>
-          <LanguageToggle />
+          <div className="flex items-center gap-3">
+            {user && (
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                {user.pfpUrl && (
+                  <img
+                    src={user.pfpUrl}
+                    alt=""
+                    className="w-6 h-6 rounded-full"
+                  />
+                )}
+                <span>{user.displayName || user.username}</span>
+              </div>
+            )}
+            <LanguageToggle />
+          </div>
         </div>
 
         {/* Countdown Section */}
@@ -79,7 +87,9 @@ export default function HomePage() {
 
         {/* Past Halvings Bar Chart */}
         <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6 mb-4">
-          <h2 className="text-base font-bold mb-4 text-white">{t("pastHalvings")}</h2>
+          <h2 className="text-base font-bold mb-4 text-white">
+            {t("pastHalvings")}
+          </h2>
           <HalvingBarChart />
         </div>
 

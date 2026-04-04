@@ -7,13 +7,13 @@ export async function GET() {
     (
       <div
         style={{
-          width: "200px",
-          height: "200px",
+          width: "100%",
+          height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           background: "linear-gradient(135deg, #F7931A, #FCD34D)",
-          borderRadius: "40px",
+          borderRadius: "200px",
         }}
       >
         <div
@@ -24,13 +24,15 @@ export async function GET() {
             justifyContent: "center",
           }}
         >
-          <span style={{ fontSize: "80px", lineHeight: 1 }}>₿</span>
+          <span style={{ fontSize: "420px", lineHeight: 1, color: "#000000" }}>
+            ₿
+          </span>
           <span
             style={{
-              fontSize: "28px",
+              fontSize: "140px",
               fontWeight: "bold",
               color: "#000000",
-              marginTop: "4px",
+              marginTop: "10px",
               fontFamily: "monospace",
             }}
           >
@@ -40,8 +42,8 @@ export async function GET() {
       </div>
     ),
     {
-      width: 200,
-      height: 200,
+      width: 1024,
+      height: 1024,
     }
   );
 }

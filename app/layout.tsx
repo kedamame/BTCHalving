@@ -12,13 +12,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const frameConfig = {
-    version: "next",
+  const miniAppEmbed = {
+    version: "1",
     imageUrl: `${APP_URL}/api/og?t=${dailyTs()}`,
     button: {
       title: "BTC Halving Countdown",
       action: {
-        type: "launch_frame",
+        type: "launch_miniapp",
         name: "BTC Halving Countdown",
         url: APP_URL,
         splashImageUrl: `${APP_URL}/splash.png`,
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html>
       <head>
-        <meta name="fc:frame" content={JSON.stringify(frameConfig)} />
+        <meta name="fc:miniapp" content={JSON.stringify(miniAppEmbed)} />
       </head>
       <body>{children}</body>
     </html>

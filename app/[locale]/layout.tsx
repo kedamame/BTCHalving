@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { AppProvider } from "../components/providers/AppProvider";
 import "../globals.css";
 
 const APP_URL =
   process.env.NEXT_PUBLIC_APP_URL || "https://btc-halving-two.vercel.app";
 
-// Daily cache-bust: Unix timestamp at UTC midnight, changes every 24h
 function dailyTs() {
-  const now = Date.now();
-  return Math.floor(now / 86400000) * 86400;
+  return Math.floor(Date.now() / 86400000) * 86400;
 }
 
-function buildFrameConfig() {
+function buildMiniAppEmbed() {
   return {
-    version: "next",
+    version: "1",
     imageUrl: `${APP_URL}/api/og?t=${dailyTs()}`,
     button: {
       title: "BTC Halving Countdown",
       action: {
-        type: "launch_frame",
+        type: "launch_miniapp",
         name: "BTC Halving Countdown",
         url: APP_URL,
         splashImageUrl: `${APP_URL}/splash.png`,
@@ -31,7 +30,8 @@ function buildFrameConfig() {
 
 export const metadata: Metadata = {
   title: "BTC Halving Countdown",
-  description: "Bitcoin halving countdown with historical performance data. A Farcaster MiniApp.",
+  description:
+    "Bitcoin halving countdown with historical performance data. A Farcaster MiniApp.",
   openGraph: {
     title: "BTC Halving Countdown",
     description: "Next BTC halving countdown with historical performance data",
@@ -48,17 +48,19 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages();
-  const frameConfig = buildFrameConfig();
+  const miniAppEmbed = buildMiniAppEmbed();
 
   return (
     <html lang={locale}>
       <head>
-        <meta name="fc:frame" content={JSON.stringify(frameConfig)} />
+        <meta name="fc:miniapp" content={JSON.stringify(miniAppEmbed)} />
       </head>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <AppProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </AppProvider>
       </body>
     </html>
   );
